@@ -70,3 +70,7 @@ ____________________________________________________________
 - The program is setting to migrate one seismogram on two rtm simulations.
 
       ++ See ./INPUTS/0_inputs_readme.INFO for more details.
+      
+ ### CONTACT
+ 
+ - E-mail: c.barbosa@nacad.ufrj.br
