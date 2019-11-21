@@ -1,6 +1,6 @@
 # rtmUq2D
 
-Reverse Time Migration
+Reverse Time Migration for Uncertainty Quantification.
 
 ### MAIN FEATURES OF THE FORMULATION
 
