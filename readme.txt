@@ -17,10 +17,10 @@ Year first available:                       2019
 
 Hardware required:                          Recomended Intel Core i7 CPU 3.2GHz x 6; Memory 16GB.
 
-Software required:                          Intel compiler
+Software required:                          Intel compiler, OpenMP and MPI libraries
 
 Program language:                           C language
 
-Program size:                               99.4 MB
+Program size:                               136.6 MB
 
-Details on how to access the source code:   git clone xxxx
+Details on how to access the source code:   git clone https://github.com/clsbarbosa/rtmUq2D.git
