@@ -1,0 +1,13 @@
+>> OBJECT FILES
+Files related to the compilation of each source code.
+   + absorbingBoundaryCondition.c  -> absorbingBoundaryCondition.o
+   + backward_modeling.c           -> backward_modeling.o
+   + compression_tools.c           -> compression_tools.o
+   + forward_modeling.c            -> forward_modeling.o
+   + generic_functions.c           -> generic_functions.o
+   + image_conditions.c            -> image_conditions.o
+   + math_functions.c              -> math_functions.o
+   + mpi_rtm_iso2d.c               -> mpi_rtm_iso2d.o
+   + pi_file.c                     -> pi_file.o
+   + rtm_iso2d.c                   -> rtm_iso2d.o
+   + stencilDFM.c                  -> stencilDFM.o

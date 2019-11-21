@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/testzfp.dir/testzfp.cpp.o  -o ../bin/testzfp -Wl,-rpath,/home/wks62/Documents/PROJETOS/UQ_PETROBRAS/DESENVOLVIMENTO/TESTES/SEMESTRE_02/23_ZFP_RTM_COUPLING/RTM_ISO-MPI_SIM_2/ZFP_LIBRARY/build/lib ../lib/libzfp.so.0.5.5 

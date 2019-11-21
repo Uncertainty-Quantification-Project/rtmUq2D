@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+PROGRAM=rtmuq2d
+
+export OMP_SCHEDULE="static"
+export KMP_AFFINITY="verbose,granularity=fine,compact,1,0"
+export OMP_NUM_THREADS=6
+
+time mpirun -n 2 ./$PROGRAM

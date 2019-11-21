@@ -1,0 +1,23 @@
+Performing C SOURCE FILE Test HAVE_MATH failed with the following output:
+Change Dir: /home/wks62/Documents/PROJETOS/UQ_PETROBRAS/DESENVOLVIMENTO/TESTES/SEMESTRE_02/23_ZFP_RTM_COUPLING/RTM_ISO-MPI_SIM_2/ZFP_LIBRARY/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_d88c1/fast 
+/usr/bin/make -f CMakeFiles/cmTC_d88c1.dir/build.make CMakeFiles/cmTC_d88c1.dir/build
+make[1]: Entering directory '/home/wks62/Documents/PROJETOS/UQ_PETROBRAS/DESENVOLVIMENTO/TESTES/SEMESTRE_02/23_ZFP_RTM_COUPLING/RTM_ISO-MPI_SIM_2/ZFP_LIBRARY/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d88c1.dir/src.c.o
+/usr/bin/cc   -DHAVE_MATH -fPIE   -o CMakeFiles/cmTC_d88c1.dir/src.c.o   -c /home/wks62/Documents/PROJETOS/UQ_PETROBRAS/DESENVOLVIMENTO/TESTES/SEMESTRE_02/23_ZFP_RTM_COUPLING/RTM_ISO-MPI_SIM_2/ZFP_LIBRARY/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_d88c1
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d88c1.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE_MATH    -rdynamic CMakeFiles/cmTC_d88c1.dir/src.c.o  -o cmTC_d88c1 
+CMakeFiles/cmTC_d88c1.dir/src.c.o: In function `main':
+src.c:(.text+0x11): undefined reference to `sqrt'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_d88c1.dir/build.make:86: recipe for target 'cmTC_d88c1' failed
+make[1]: *** [cmTC_d88c1] Error 1
+make[1]: Leaving directory '/home/wks62/Documents/PROJETOS/UQ_PETROBRAS/DESENVOLVIMENTO/TESTES/SEMESTRE_02/23_ZFP_RTM_COUPLING/RTM_ISO-MPI_SIM_2/ZFP_LIBRARY/build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_d88c1/fast' failed
+make: *** [cmTC_d88c1/fast] Error 2
+
+Source file was:
+#include<math.h>
+float f; int main(){sqrt(f);return 0;}

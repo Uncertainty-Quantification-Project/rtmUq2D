@@ -1,0 +1,179 @@
+>> INPUT FILES
+   ++ Requeriments (Binary Files)
+      -- seismic wavelet                             - ricker (seismic source)
+      -- compressional wave velocity model parameter - vp_marmousi2_ID.bin, where ID is
+                                                       00000, 00001, 00002, 00003, ..., numberOfShots
+      -- observed seismogram                         - seismogram_ID.zfp, where ID is 
+                                                       00000, 00001, 00002, 00003, ..., numberOfSimulations
+      
+Obs.: Any binary files (vp, seismic source and seismogram) can be provided for the program.
+      
+      Files that can be used are in "INPUTS" folder:
+        -- vp model:   marmousi2_00001.bin
+        -- Wavelet :   i_ricker.rsf@
+        -- Compressed Seismogram: seismogram_tol10-0_00001.zfp, seismogram_tol10-0_00002.zfp or
+                                  seismogram_tol10-4_00001.zfp, seismogram_tol10-4_00002.zfp or
+________________________________________________________________________
+
+
+
+>> DESCRIPTIONS OF THE PARAMETERS (see fixed_parameter.h Header)
+
++++ Velocity Model and Wavelet +++
+// -------- Input Disk FILES...
+static char velocityFile[] = "./INPUTS/marmousi2_%05d.bin";
+static char waveletFile[]  = "./INPUTS/i_ricker.rsf@";
+static char seismogramFile[]  = "./INPUTS/seismogram_tol10-0_%05d.zfp";
+
+Observation 1: Path of the velocity models, wavelet and seismogram files.
+------------------------------------------------------------------------
+
+
+// -------- ZFP Parameters...
+static const float zfp_tolerance = 0.0;         // if near-lossless compression -> zfp_tolerance = 0.0; 
+                                                // if lossy compression -> zfp_tolerance = 0.0001;
+// ----------------------------------
+
+
++++ Seismogram and Wavefield propagation +++
+// -------- Output Disk FILES...
+static char stackedFile[] = "./OUTPUTS/stackedBrute_%05d.bin";
+static char stackedLaplacianFile[] = "./OUTPUTS/stackedLaplacian_%05d.bin";
+
+Observation 1: see ./OUTPUTS/0_outputs_readme.INFO file for more information about
+               seismogramFile.
+------------------------------------------------------------------------
+
+
++++ Dimensions +++
+// -------- Dimension of the MODEL...
+static const int Nx			= 2721;
+static const int Nz			= 561;
+
+Observation 1:
+      
+      Nx refers to the quantity of samples to represent the extension of the model.
+      Nz refers to the quantity of samples to represent the depth of the model.
+
+      ++++++++++++++++++    Nx    ++++++++++++++++++
+      +                                            +
+      +                                            +
+                                                   +
+      Nz                                           +
+                                                   +
+      +                                            +
+      +                                            +
+      ++++++++++++++++++++++++++++++++++++++++++++++
+
+------------------------------------------------------------------------
+
++++ Total time steps +++
+// -------- Information of the step time of the ACQUISITION...
+static const int numberOfTimeStep 	= 14000;
+
+Observation 1:
+      
+      numberOfTimeStep: refers to total time steps to solve the acoustic wave equation
+                        with Finite Difference Method.
+                        
+                        sampling * (numberOfTimeStep - 1): gives the total time of 
+                        seismic recording.
+------------------------------------------------------------------------
+
+
++++ Seismic source +++
+// -------- Information of the WAVELET...
+static const int sampligWavelet 	= 800;
+static const float cutFrequency 	= 50.0;
+
+Observation 1:
+      
+      sampligWavelet: number of samples to represent the seismic source signature.
+                      sampling * (sampligWavelet - 1): gives total time of the seismic 
+                      source signature.
+                
+      cutFrequency:   cut frequency of the seismic source.
+------------------------------------------------------------------------
+
+
++++ Finite Difference Method +++
+// -------- Finite Difference Model Parametrization...
+static const float spacingGrid 	= 6.25;		// Define the value in meter from one grid point to the next one.
+static const float sampling 	= 0.0005;	// Define the value in seconds from one sample to the nexto one.
+
+Observation 1:
+
+      spacingGrid:       Define the value in meters from one grid point to the next one.
+                         To avoid dipersion use the following equation:
+                            -> spacingGrid <= minimumVelocity/(5.0 * cutFrequency)
+                               # minimumVelocity: minimum vp velocity from velocityFile.
+                               # cutFrequency:    cut frequency of the seismic source.
+                            
+      sampling:          Define the value in seconds from one sample to the next one.
+                         To avoid instability use the following equation:
+                            -> sampling <= spacingGrid/(5.0 * maximumVelocity)
+                               # spacingGrid:      already defined.
+                               # maximumVelocity:  maximum vp velocity from velocityFile.
+
+Observation 2:
+      spacingGrid * (Nx - 1): gives the true extension of the model in meters.
+      spacingGrid * (Nz - 1): gives the true depth of the model in meters.
+
+      sampling * (numberOfTimeStep - 1): gives the total time of seismic recording.
+------------------------------------------------------------------------
+
+
++++ Positioning Shot +++
+// -------- Information of the SHOT...
+static const int firstLocationShot	= 5;
+static const int depthShot		    = 5;
+static const int spacingShot		= 17;
+static const int numberOfShots	    = 1;
+
+Observation 1:
+
+      firstLocationShot: refers to the first position of the shot in acquisition geometry.
+                         A number between 1 and Nx.
+                         
+      depthShot:         refers to the depth position of the shot.
+                         A number between 1 and Nz.
+                         
+      spacingShot:       refers to the distance between two consecutive shots.
+                         Be careful: firstLocationShot + (SHOT_ID) * spacingShot needs to be
+                         less than Nx points, where SHOT_ID is between 1 and numberOfShots.
+                         
+      numberOfShots:     refers total number of shots in acquisition geometry.
+                         Be careful: firstLocationShot + (SHOT_ID) * spacingShot needs to be
+                         less than Nx points, where SHOT_ID is between 1 and numberOfShots.
+------------------------------------------------------------------------
+
+
++++ Positioning Receivers +++
+// -------- Information of the RECEIVERS...
+static const int firstLocationReceiver  = 1;
+static const int depthReceiver	        = 5;
+static const int spacingReceiver	    = 3;
+static const int numberOfReceivers	    = 1361;
+
+Observation 1:
+
+      firstLocationReceiver: refers to the first position of the receiver spread.
+                             A number between 1 and Nx.
+                             Default: use 1 as default
+                         
+      depthReceiver:         refers to the depth position of the receivers.
+                             A number between 1 and Nz.
+                         
+      spacingReceiver:       refers to the distance between two consecutive receivers.
+                             Be careful: 
+                               firstLocationReceiver + (RECEIVER_ID) * spacingReceiver 
+                               needs to be less than Nx points, where RECEIVER_ID is between 
+                               1 and numberOfReceivers.
+                               >>> Default: use 1 as default parameter <<<
+                         
+      numberOfReceivers:     refers total number of the receiver spread.
+                             firstLocationReceiver + (RECEIVER_ID) * spacingReceiver 
+                               needs to be less than Nx points, where RECEIVER_ID is between 
+                               1 and numberOfReceivers.
+                               >>> Default: use Nx receivers as default parameter <<<
+------------------------------------------------------------------------

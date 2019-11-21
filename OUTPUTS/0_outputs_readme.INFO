@@ -1,0 +1,19 @@
+>> OUTPUTS FILES
+   ++ Binary files
+      
+      -- brute stacked seismic section: summation of the information in the files in the folder "TEMPORARY_FILES"
+         "crossCorrelation_000001.bin" + "crossCorrelation_000002.bin" + ...
+         This process provides a final stacked section that constains information about
+         all shots related to a velocity field.
+      
+      -- filtered stacked seismic section: this file contains the result of applying the 
+         Laplacian filter after the summation described earlier.
+         This process provides a final stacked section that constains information about
+         all shots related to a velocity field.
+
+Observation 1:
+      
+      Each seismic section is a binary file with Nx * Nz information.
+      See 0_inputs_readme.INFO to get information about Nx and Nz values.
+      
+      Each sample of the migrated section represents the seismic amplitude of hydrostatic pressure squared.
