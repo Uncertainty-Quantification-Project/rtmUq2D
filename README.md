@@ -36,10 +36,17 @@ ____________________________________________________________
       
       -- MPI Library
 
+- Before Compiling follow the commands to build the ZFP library:
+
+      -- cd ./ZFP_LIBRARY_0.5.5/build/
+      -- rm -r *
+      -- cmake -DBUILD_EXAMPLES=ON ..
+      -- make
+
 
 - Compilation:
 
-      -- Use make file typing:
+      -- Use make file typing in the mais directory:
       
          make clean
       
